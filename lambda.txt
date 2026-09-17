@@ -1,0 +1,22 @@
+import boto3
+
+ssm = boto3.client("ssm")
+
+INSTANCE_ID = "i-xxxxxxxxxxxxxxxxx"
+
+def lambda_handler(event, context):
+
+    response = ssm.send_command(
+        InstanceIds=[INSTANCE_ID],
+        DocumentName="AWS-RunShellScript",
+        Parameters={
+            "commands": [
+                "/home/ubuntu/deploy.sh"
+            ]
+        }
+    )
+
+    return {
+        "statusCode": 200,
+        "commandId": response["Command"]["CommandId"]
+    }
