@@ -1,0 +1,7 @@
+sudo snap install amazon-ssm-agent --classic
+
+sudo systemctl enable snap.amazon-ssm-agent.amazon-ssm-agent.service 
+
+sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service
+
+check if it is available in systems manager managed nodes
